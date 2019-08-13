@@ -13,10 +13,6 @@ RUN ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 
 WORKDIR /app
 
-# Enable docker
-RUN systemctl start docker
-RUN systemctl enable docker
-
 # Publish image to registry
 RUN $(aws ecr get-login --no-include-email --region ${AWS_REGION})
 RUN docker build -t $IMAGE_NAME .
